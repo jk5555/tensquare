@@ -31,4 +31,7 @@ public class ArticleApplication {
     public IdWorker createIdWorker(){
         return new IdWorker(1, 1);
     }
+
+
+
 }
