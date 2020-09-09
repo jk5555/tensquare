@@ -11,6 +11,7 @@
     <modules>
         <module>tenquare_common</module>
         <module>tensquare_article</module>
+        <module>tensquare_user</module>
     </modules>
 
 

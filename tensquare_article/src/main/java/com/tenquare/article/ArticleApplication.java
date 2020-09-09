@@ -23,7 +23,6 @@ public class ArticleApplication {
 
     /**
      * 创建主键策略对象，并注册到spring容器中
-
      * @return com.tenquare.util.IdWorker
      * @author kun
      */
