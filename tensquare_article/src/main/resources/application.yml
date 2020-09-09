@@ -48,3 +48,5 @@ mybatis-plus:
       log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 
 
+
+00000000000000000000000
