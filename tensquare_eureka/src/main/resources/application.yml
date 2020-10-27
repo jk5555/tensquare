@@ -1,0 +1,15 @@
+server:
+  port: 6868
+spring:
+  application:
+    name: tensquare_eureka_server
+#  profiles:
+#   active: peer1  # 指定配置文件启动
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+#    register-with-eureka: false #是否将自己注册到eureka中
+#    fetch-registry: false #是否从eureka中获取信息
+    service-url:
+      defaultZone: http://127.0.0.1:6869/eureka/,http://127.0.0.1:6870/eureka/

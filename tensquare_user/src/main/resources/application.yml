@@ -1,5 +1,23 @@
 server:
   port: 9008
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/,http://127.0.0.1:6869/eureka/,http://127.0.0.1:6870/eureka/
+  instance:
+    prefer-ip-address: true
+ribbon:
+  ReadTimeout: 5000
+#请求与响应压缩
+feign:
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 1024
+    response:
+      enabled: true
+
 spring:
   application:
     name: tensquare-user
@@ -23,3 +41,7 @@ mybatis-plus:
       lazyLoadingEnabled: true #延时加载的开关
       multipleResultSetsEnabled: true #开启延时加载，否则按需加载属性
       log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+management:
+  security:
+    enabled: false

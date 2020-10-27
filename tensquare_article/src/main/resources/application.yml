@@ -1,5 +1,12 @@
 server:
   port: 9004
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/,http://127.0.0.1:6869/eureka/,http://127.0.0.1:6870/eureka/
+  instance:
+    prefer-ip-address: true
+
 spring:
   application:
     name: tensquare-article #指定服务名
@@ -22,7 +29,7 @@ spring:
     host: 115.159.116.23
     port: 6379
     password: Jiang@764648
-#    database: 0
+    database: 0
     timeout: 5000
     jedis:
       pool:
