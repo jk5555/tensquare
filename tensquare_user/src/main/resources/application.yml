@@ -6,8 +6,6 @@ eureka:
       defaultZone: http://127.0.0.1:6868/eureka/,http://127.0.0.1:6869/eureka/,http://127.0.0.1:6870/eureka/
   instance:
     prefer-ip-address: true
-ribbon:
-  ReadTimeout: 5000
 #请求与响应压缩
 feign:
   compression:
@@ -17,6 +15,23 @@ feign:
       min-request-size: 1024
     response:
       enabled: true
+  hystrix:
+    enabled: false
+  httpclient:
+    connection-timeout: 5000
+#全局配置
+# 请求连接的超时时间 默认的时间为 1 秒
+ribbon:
+  ConnectTimeout: 5000
+  # 请求处理的超时时间
+  ReadTimeout: 5000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
 
 spring:
   application:

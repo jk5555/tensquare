@@ -1,0 +1,13 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/jk5555/springcloud-config-server.git #git仓库的位置
+          search-paths: config-server-study/one,config-server-study/two # 指定仓库下的相对路径，用于搜索配置，可配置多个
+          username: jk5555
+          password: kun7635288

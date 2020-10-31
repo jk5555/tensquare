@@ -15,6 +15,7 @@
         <module>tensquare_user</module>
         <module>tensquare_eureka</module>
         <module>tensquare_encrypt</module>
+        <module>config-server</module>
     </modules>
 
 

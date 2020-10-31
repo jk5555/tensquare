@@ -9,8 +9,9 @@ zuul:
       path: /article/** #配置请求URL的请求规则
       serviceId: tensquare-article #指定Eureka注册中心中的服务id
       strip-prefix: true
-      sentiviteHeaders: a
-      customSensitiveHeaders: true
+      sentiviteHeaders: cookie
+      customSensitiveHeaders: true #自定义转发敏感请求头信息开关（zuul默认会将cookie、set-cookie、Authorization等敏感请求头过滤掉不传递给路由的服务，此设置用于打开自定义转发的敏感请求头）
+      retryable: false
 
     tensquare-user: #文章
         path: /user/** #配置请求URL的请求规则
@@ -18,6 +19,13 @@ zuul:
         strip-prefix: true
         sentiviteHeaders: a
         customSensitiveHeaders: true
+  ignored-services: tensquare-encrypt,tensquare-user # 忽略路由的微服务名称（这样配置之后，zuul不会自动给这些服务创建映射规则，但是配置文件中人为创建的路由还是可以生效的），zuul会根据eureka提供的服务清单自动创建以服务名为前缀的路由
+  #ignored-patterns: /**/hello/**,/**/msg/** #忽略路由的url表达式（这样配置之后，路径中包含hello的url不会被路由），这个配置是基于url层次的，比服务灵活。这里可以写多个
+  retryable: false
+  host:
+    connect-timeout-millis: 5000
+
+
 
 eureka:
   client:

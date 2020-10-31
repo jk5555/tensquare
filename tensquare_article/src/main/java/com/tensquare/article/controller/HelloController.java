@@ -44,6 +44,11 @@ public class HelloController {
 
     @GetMapping("/hello4")
     public String getHello4() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "hello ";
     }
 

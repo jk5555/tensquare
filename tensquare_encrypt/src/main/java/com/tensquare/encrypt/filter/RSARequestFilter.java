@@ -9,6 +9,7 @@ import com.tensquare.encrypt.rsa.RsaKeys;
 import com.tensquare.encrypt.service.RsaService;
 import org.apache.commons.codec.Charsets;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.netflix.zuul.filters.post.SendErrorFilter;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -62,13 +63,13 @@ public class RSARequestFilter extends ZuulFilter {
             String requestParam = StreamUtils.copyToString(stream, Charsets.UTF_8);
 
             if (!Strings.isNullOrEmpty(requestParam)) {
-                System.out.println(String.format("请求体中的密文: %s", requestParam));
+                System.out.printf("请求体中的密文: %s%n", requestParam);
                 decryptData = rsaService.RSADecryptDataPEM(requestParam, RsaKeys.getServerPrvKeyPkcs8());
 
-                System.out.println(String.format("解密后的内容: %s", decryptData));
+                System.out.printf("解密后的内容: %s%n", decryptData);
             }
 
-            System.out.println(String.format("request: %s >>> %s, data=%s", request.getMethod(), url, decryptData));
+            System.out.printf("request: %s >>> %s, data=%s%n", request.getMethod(), url, decryptData);
 
             if (!Strings.isNullOrEmpty(decryptData)) {
                 System.out.println("json字符串写入request body");
@@ -97,6 +98,8 @@ public class RSARequestFilter extends ZuulFilter {
 
         } catch (Exception e) {
             System.out.println(this.getClass().getName() + "运行出错" + e.getMessage());
+            //设置出错状态，让error过滤器执行
+            //ctx.set("sendErrorFilter.ran");
         }
 
         return null;

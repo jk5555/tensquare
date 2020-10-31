@@ -59,7 +59,7 @@ public class AuthFilter extends ZuulFilter {
         if (StringUtils.isEmpty(token)) {
             ctx.setResponseStatusCode(401);
             ctx.setSendZuulResponse(false);
-            return null;
+            throw new ZuulException(new Exception("aaaaaaaaa"),HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"aaaaaaaaa");
         }else {
             System.out.println("token is on, could be forward");
         }
